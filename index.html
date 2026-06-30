@@ -234,7 +234,78 @@
   .total-note{font-size:0.78rem; color:#9AA59B; margin-top:10px; line-height:1.55;}
   .total-panel .btn{margin-top:26px; width:100%; justify-content:center;}
 
-  .pkg-tabs{display:inline-flex; gap:4px; margin-bottom:32px; background:var(--bg-soft); padding:5px; border-radius:999px;}
+  /* ---------- BOOKING / STRIPE ---------- */
+  .book-wrap{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+  .book-info{padding:54px 50px; background:var(--mist);}
+  .book-info h2{font-size:clamp(1.8rem,2.8vw,2.3rem); margin-top:14px; font-weight:400;}
+  .book-info p{color:var(--ink-soft); margin-top:14px; line-height:1.7; font-size:1.02rem;}
+  .book-steps{margin-top:30px; display:flex; flex-direction:column; gap:18px;}
+  .book-step{display:flex; align-items:flex-start; gap:16px;}
+  .book-step .n{
+    width:30px; height:30px; border-radius:50%; flex:0 0 auto;
+    background:var(--sage-deep); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.85rem; font-weight:700; margin-top:1px;
+  }
+  .book-step .t{font-weight:600; font-size:0.96rem;}
+  .book-step .s{font-size:0.86rem; color:var(--ink-soft); margin-top:3px; line-height:1.5;}
+  .book-payment{
+    padding:54px 50px;
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+    text-align:center; gap:24px;
+  }
+  .deposit-badge{
+    background:var(--mist); border-radius:var(--radius-md);
+    padding:28px 36px; width:100%;
+  }
+  .deposit-badge .lab{font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-soft); font-weight:600;}
+  .deposit-badge .amt{font-family:'Newsreader',serif; font-size:3.2rem; font-weight:500; color:var(--sage-deep); margin-top:6px;}
+  .deposit-badge .sub{font-size:0.84rem; color:var(--ink-soft); margin-top:6px; line-height:1.5;}
+  .stripe-btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    background:var(--sage-deep); color:#fff;
+    padding:18px 32px; border-radius:999px;
+    font-weight:700; font-size:1rem;
+    border:none; cursor:pointer; width:100%;
+    text-decoration:none;
+    transition:background .3s var(--ease), transform .3s var(--ease);
+    box-shadow:var(--shadow-tight);
+  }
+  .stripe-btn:hover{background:var(--ink); transform:translateY(-2px);}
+  .stripe-note{font-size:0.78rem; color:var(--ink-soft); line-height:1.55;}
+  .stripe-badges{display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;}
+  .stripe-badge{
+    background:var(--bg-soft); border:1px solid var(--line);
+    border-radius:6px; padding:5px 10px;
+    font-size:0.72rem; font-weight:600; color:var(--ink-soft);
+    display:flex; align-items:center; gap:5px;
+  }
+  .stripe-coming{
+    background:var(--bg-soft); border:2px dashed var(--sage);
+    border-radius:var(--radius-md); padding:32px;
+    width:100%;
+  }
+  .stripe-coming .t{font-family:'Newsreader',serif; font-size:1.15rem; color:var(--ink); margin-bottom:8px;}
+  .stripe-coming .s{font-size:0.86rem; color:var(--ink-soft); line-height:1.55;}
+  .stripe-coming .email-link{
+    display:inline-flex; align-items:center; gap:8px; margin-top:16px;
+    padding:12px 22px; border-radius:999px;
+    background:var(--sage-deep); color:#fff; font-weight:600; font-size:0.9rem;
+  }
+  @media(max-width:980px){
+    .book-wrap{grid-template-columns:1fr;}
+    .book-info{padding:40px 26px;}
+    .book-payment{padding:36px 26px;}
+  }
+
+  /* ---------- PACKAGES ---------- */
   .pkg-tab{
     padding:10px 22px; border:none; border-radius:999px;
     font-size:0.86rem; font-weight:600; cursor:pointer; background:transparent;
@@ -343,12 +414,13 @@
     </div>
     <div class="nav-links">
       <a href="#estimator">Estimate</a>
+      <a href="#book">Book</a>
       <a href="#packages">Packages</a>
       <a href="#services">Services</a>
       <a href="#how">How it works</a>
       <a href="#contact">Contact</a>
     </div>
-    <a href="#contact" class="btn btn-primary">Book a clean</a>
+    <a href="#book" class="btn btn-primary">Book a clean</a>
   </div>
 </nav>
 
@@ -485,9 +557,85 @@
               <div class="num" id="totalAmt">$0</div>
             </div>
             <div class="total-note">A final walkthrough confirms exact pricing — this estimate is a starting point, not a contract.</div>
-            <a href="#contact" class="btn btn-primary">Request this quote</a>
+            <a href="#book" class="btn btn-primary">Request this quote →</a>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="book">
+  <div class="wrap">
+    <div class="book-wrap" data-reveal>
+      <div class="book-info">
+        <span class="eyebrow">Secure your date</span>
+        <h2>Ready to book? Start with a deposit.</h2>
+        <p>A small deposit locks in your appointment. The remaining balance is collected at the time of service — no surprises, just a clean home.</p>
+        <div class="book-steps">
+          <div class="book-step">
+            <div class="n">1</div>
+            <div>
+              <div class="t">Build your estimate</div>
+              <div class="s">Use the estimator above to get your room-by-room quote.</div>
+            </div>
+          </div>
+          <div class="book-step">
+            <div class="n">2</div>
+            <div>
+              <div class="t">Pay your deposit</div>
+              <div class="s">A $50 deposit secures your booking slot — applied toward your total.</div>
+            </div>
+          </div>
+          <div class="book-step">
+            <div class="n">3</div>
+            <div>
+              <div class="t">We confirm & show up</div>
+              <div class="s">We'll follow up with your exact appointment time. Balance due at service.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-payment">
+        <div class="deposit-badge">
+          <div class="lab">Booking deposit</div>
+          <div class="amt">$50</div>
+          <div class="sub">Applied toward your total — balance due at time of service</div>
+        </div>
+
+        <!-- ============================================================
+             STRIPE PAYMENT LINK — PASTE HERE WHEN APPROVED
+             ─────────────────────────────────────────────────────────────
+             1. Go to Stripe Dashboard → Payment Links → + New
+             2. Add product: "Booking Deposit — Simply Savvy" / Price: $50
+             3. Copy the link (e.g. https://buy.stripe.com/xxxxxxxxx)
+             4. Replace YOUR_STRIPE_PAYMENT_LINK_HERE in the href below
+             5. Delete the .stripe-coming block and uncomment the .stripe-btn block
+             ============================================================ -->
+
+        <!-- LIVE BUTTON (uncomment when Stripe link is ready):
+        <a href="YOUR_STRIPE_PAYMENT_LINK_HERE" target="_blank" class="stripe-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+          Pay $50 deposit
+        </a>
+        <div class="stripe-badges">
+          <div class="stripe-badge">🔒 Secured by Stripe</div>
+          <div class="stripe-badge">Visa · Mastercard · Amex</div>
+        </div>
+        <p class="stripe-note">Your card details are never stored by Simply Savvy — all payments are processed securely through Stripe.</p>
+        -->
+
+        <!-- TEMPORARY (remove once Stripe link is live): -->
+        <div class="stripe-coming">
+          <div class="t">Online booking coming soon</div>
+          <div class="s">We're finishing up our payment setup. In the meantime, email us your estimate and preferred date and we'll get you booked right away.</div>
+          <a href="mailto:simplysavvysatisfaction@gmail.com" class="email-link">
+            Email to book
+          </a>
+        </div>
+        <!-- END TEMPORARY -->
+
       </div>
     </div>
   </div>
